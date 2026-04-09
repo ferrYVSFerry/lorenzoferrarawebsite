@@ -21,23 +21,23 @@ import { useState, useEffect } from 'react';
 const portfolioItems = [
   {
     id: 1,
+    name: 'Studio Ibis',
+    description: 'Sito web elegante e dal design raffinato per uno studio di tatuaggi. Progettato per esaltare le opere d\'arte e facilitare le prenotazioni.',
+    image: '/src/pages/Studio-bisio.png',
+    link: 'https://ferryvsferry.github.io/Studio-Ibis/'
+  },
+  {
+    id: 2,
     name: 'Ristorante "La Tradizione"',
     description: 'Sito vetrina con menu digitale e modulo prenotazioni integrato.',
     image: 'https://picsum.photos/seed/restaurant/800/500',
     link: '#'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Studio Legale Rossi',
     description: 'Restyling completo per trasmettere professionalità e acquisire nuovi clienti.',
     image: 'https://picsum.photos/seed/lawyer/800/500',
-    link: '#'
-  },
-  {
-    id: 3,
-    name: 'B&B "Vista Mare"',
-    description: 'Sito multilingua con galleria fotografica e contatti diretti.',
-    image: 'https://picsum.photos/seed/hotel/800/500',
     link: '#'
   }
 ];
@@ -57,13 +57,15 @@ const testimonials = [
 
 export default function CreazioneSitiWeb() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % portfolioItems.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % portfolioItems.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length);
@@ -109,15 +111,15 @@ export default function CreazioneSitiWeb() {
       {/* 2. SEZIONE EMPATIA E CONNESSIONE */}
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Piacere, sono Lorenzo</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Il digitale non deve essere un ostacolo</h2>
           <div className="prose prose-lg text-gray-600 mx-auto">
             <p>
-              So bene quanto impegno, sudore e passione metti ogni giorno nella tua attività. 
-              Le piccole imprese sono il cuore del nostro territorio, ma spesso faticano a trovare 
-              lo spazio che meritano nel mondo digitale.
+              Dietro ogni attività locale c'è un lavoro immenso che spesso non viene valorizzato online. 
+              Il mio obiettivo è tradurre la tua passione in una presenza web che parli direttamente ai tuoi clienti, 
+              togliendoti il peso delle complicazioni tecniche.
             </p>
             <p className="font-medium text-gray-900 text-xl mt-8 border-l-4 border-blue-600 pl-6 text-left italic">
-              "So quanto sia difficile oggi far crescere un'attività e distinguersi. Proprio per questo voglio darvi una mano concreta."
+              "Voglio darti gli strumenti per competere e distinguerti, trasformando il tuo sito in un vero e proprio alleato per il tuo lavoro quotidiano."
             </p>
           </div>
         </div>
@@ -225,7 +227,11 @@ export default function CreazioneSitiWeb() {
             <p className="text-lg text-gray-600">Esempi di come ho aiutato altre attività a presentarsi al meglio.</p>
           </div>
 
-          <div className="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] shadow-md group max-w-5xl mx-auto">
+          <div 
+            className="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[3/4] sm:aspect-[16/9] lg:aspect-[21/9] shadow-md group max-w-5xl mx-auto"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <AnimatePresence mode="wait">
               <motion.a
                 key={currentSlide}
@@ -244,8 +250,8 @@ export default function CreazioneSitiWeb() {
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
-                  <div className="text-white flex items-end justify-between w-full">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 pb-20 sm:p-10 sm:pb-20">
+                  <div className="text-white flex items-center justify-between w-full">
                     <div>
                       <h3 className="text-2xl sm:text-3xl font-bold mb-2">{portfolioItems[currentSlide].name}</h3>
                       <p className="text-gray-200 text-sm sm:text-base max-w-xl">{portfolioItems[currentSlide].description}</p>
@@ -312,28 +318,15 @@ export default function CreazioneSitiWeb() {
         </div>
       </section>
 
-      {/* 8. CTA FORTE */}
-      <section className="py-24 bg-gray-900 text-center px-4">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Vuoi vedere come potrebbe essere il tuo nuovo sito?</h2>
-          <p className="text-xl text-gray-300 mb-10">
-            Posso prepararti una demo gratuita, senza impegno. Scopri il potenziale della tua attività online.
-          </p>
-          <a 
-            href="#contatti-rapidi" 
-            className="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-gray-900 bg-white rounded-xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full sm:w-auto"
-          >
-            Contattami ora
-          </a>
-        </div>
-      </section>
-
-      {/* 9. SEZIONE CONTATTO RAPIDO */}
-      <section id="contatti-rapidi" className="py-24 bg-white scroll-mt-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Richiedi la tua demo gratuita</h2>
-            <p className="text-lg text-gray-600">Scegli il metodo che preferisci. Ti risponderò il prima possibile.</p>
+      {/* 8. SEZIONE CONTATTO RAPIDO (HIGHLIGHTED) */}
+      <section id="contatti-rapidi" className="py-24 bg-blue-600 relative overflow-hidden scroll-mt-16">
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-10"></div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Vuoi vedere come potrebbe essere il tuo nuovo sito?</h2>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+              Richiedi ora una demo gratuita e senza impegno. Scegli il metodo che preferisci per contattarmi.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -341,34 +334,34 @@ export default function CreazioneSitiWeb() {
               href="https://wa.me/393515584636"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center p-8 bg-white rounded-2xl border-2 border-green-100 hover:border-green-500 hover:shadow-lg transition-all group"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group"
             >
               <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-600 group-hover:bg-green-500 group-hover:text-white transition-colors mb-4">
                 <MessageCircle className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">WhatsApp</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">WhatsApp</h3>
               <p className="text-sm text-gray-500 text-center">Risposta rapida</p>
             </a>
 
             <a 
               href="mailto:lorenzoferrara737@gmail.com"
-              className="flex flex-col items-center p-8 bg-white rounded-2xl border-2 border-blue-100 hover:border-blue-600 hover:shadow-lg transition-all group"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group"
             >
               <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors mb-4">
                 <Mail className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">Email</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Email</h3>
               <p className="text-sm text-gray-500 text-center">Scrivimi i dettagli</p>
             </a>
 
             <a 
               href="#"
-              className="flex flex-col items-center p-8 bg-white rounded-2xl border-2 border-pink-100 hover:border-pink-500 hover:shadow-lg transition-all group"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group"
             >
               <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center text-pink-600 group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-white transition-all mb-4">
                 <Instagram className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">Instagram</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Instagram</h3>
               <p className="text-sm text-gray-500 text-center">Seguimi e scrivimi</p>
             </a>
           </div>
