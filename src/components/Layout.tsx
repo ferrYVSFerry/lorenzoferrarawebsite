@@ -1,16 +1,17 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Terminal } from 'lucide-react';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
-  // Close mobile menu on route change
+  // Close mobile menu and scroll to top on route change
   useEffect(() => {
     setIsMenuOpen(false);
     setIsServicesOpen(false);
+    window.scrollTo(0, 0);
   }, [location]);
 
   return (
@@ -20,7 +21,8 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link to="/" className="text-xl font-bold tracking-tight text-gray-900">
+            <Link to="/" className="flex items-center text-xl font-bold tracking-tight text-gray-900">
+              <Terminal className="w-6 h-6 mr-2 text-blue-600" />
               Lorenzo Ferrara
             </Link>
 
