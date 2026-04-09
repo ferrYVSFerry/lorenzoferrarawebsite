@@ -1,26 +1,57 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Globe, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Clock, 
+  Search, 
+  Users, 
+  TrendingDown,
+  Zap,
+  Target,
+  MessageCircle,
+  Mail,
+  Instagram,
+  CheckCircle2,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const portfolioItems = [
   {
     id: 1,
-    name: 'Sito Vetrina Ristorante',
+    name: 'Ristorante "La Tradizione"',
+    description: 'Sito vetrina con menu digitale e modulo prenotazioni integrato.',
     image: 'https://picsum.photos/seed/restaurant/800/500',
     link: '#'
   },
   {
     id: 2,
-    name: 'E-commerce Abbigliamento',
-    image: 'https://picsum.photos/seed/ecommerce/800/500',
+    name: 'Studio Legale Rossi',
+    description: 'Restyling completo per trasmettere professionalità e acquisire nuovi clienti.',
+    image: 'https://picsum.photos/seed/lawyer/800/500',
     link: '#'
   },
   {
     id: 3,
-    name: 'Portfolio Fotografico',
-    image: 'https://picsum.photos/seed/portfolio/800/500',
+    name: 'B&B "Vista Mare"',
+    description: 'Sito multilingua con galleria fotografica e contatti diretti.',
+    image: 'https://picsum.photos/seed/hotel/800/500',
     link: '#'
+  }
+];
+
+const testimonials = [
+  {
+    text: "Lorenzo ha capito subito le nostre esigenze. Il nuovo sito ci ha portato il 30% di prenotazioni in più nel primo mese.",
+    author: "Marco T.",
+    role: "Titolare Ristorante"
+  },
+  {
+    text: "Professionale, veloce e sempre disponibile. La bozza gratuita mi ha convinto subito ad affidarmi a lui.",
+    author: "Giulia S.",
+    role: "Libera Professionista"
   }
 ];
 
@@ -38,47 +69,163 @@ export default function CreazioneSitiWeb() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length);
 
   return (
-    <div className="bg-white min-h-[80vh]">
-      {/* Header */}
-      <div className="bg-gray-50 py-16 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link to="/" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4 mr-2" /> Torna alla Home
-          </Link>
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-600">
-              <Globe className="w-6 h-6" />
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">Creazione Siti Web</h1>
-          </div>
-          <p className="text-xl text-gray-600">Sviluppo di siti web moderni, veloci e ottimizzati per convertire i visitatori in clienti.</p>
+    <div className="bg-white flex flex-col">
+      {/* 1. HERO SECTION */}
+      <section className="relative bg-gray-50 pt-20 pb-24 lg:pt-32 lg:pb-32 overflow-hidden border-b border-gray-200">
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight mb-6 max-w-4xl mx-auto"
+          >
+            Fai crescere la tua attività online con un sito che <span className="text-blue-600">lavora per te</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+          >
+            Aiuto le realtà locali a migliorare la propria presenza online e ottenere più clienti, con soluzioni semplici e concrete.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <a 
+              href="#contatti-rapidi" 
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto"
+            >
+              Richiedi una demo gratuita
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+            <p className="mt-4 text-sm text-gray-500 font-medium">Nessun costo. Nessun impegno.</p>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose prose-lg text-gray-600 max-w-none">
-          
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Come funziona</h2>
-          <p>
-            La creazione del sito web si sviluppa partendo dalla <strong>dimostrazione pratica</strong>: realizzo una demo personalizzata per farti toccare con mano il risultato potenziale. Successivamente, tramite un contatto diretto, stabiliamo insieme le direttive, gli obiettivi e il design desiderato.
-          </p>
-          <p>
-            Una volta definita la strategia, decidiamo come procedere. Le tipologie di siti web che posso realizzare includono:
-          </p>
-          <ul className="space-y-2">
-            <li><strong>Singole pagine (Landing Page):</strong> perfette per promuovere un servizio specifico o raccogliere contatti.</li>
-            <li><strong>Siti multi-pagina:</strong> ideali per presentare un'azienda, i suoi servizi e la sua storia in modo strutturato.</li>
-            <li><strong>E-commerce:</strong> negozi online completi per vendere i tuoi prodotti direttamente sul web.</li>
-          </ul>
-          <p>
-            Inoltre, la <strong>gestione del sito web</strong> è flessibile: può essere affidata completamente a te (ti fornirò gli strumenti necessari) oppure posso occuparmene io direttamente, garantendo aggiornamenti e manutenzione costanti.
-          </p>
+      {/* 2. SEZIONE EMPATIA E CONNESSIONE */}
+      <section className="py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Piacere, sono Lorenzo</h2>
+          <div className="prose prose-lg text-gray-600 mx-auto">
+            <p>
+              So bene quanto impegno, sudore e passione metti ogni giorno nella tua attività. 
+              Le piccole imprese sono il cuore del nostro territorio, ma spesso faticano a trovare 
+              lo spazio che meritano nel mondo digitale.
+            </p>
+            <p className="font-medium text-gray-900 text-xl mt-8 border-l-4 border-blue-600 pl-6 text-left italic">
+              "So quanto sia difficile oggi far crescere un'attività e distinguersi. Proprio per questo voglio darvi una mano concreta."
+            </p>
+          </div>
+        </div>
+      </section>
 
-          {/* Portfolio Carousel */}
-          <h2 className="text-2xl font-bold text-gray-900 mt-16 mb-8">Portfolio</h2>
+      {/* 3. SEZIONE PROBLEMA (Pain points) */}
+      <section className="py-20 bg-gray-50 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ti riconosci in queste situazioni?</h2>
+            <p className="text-lg text-gray-600">Molte attività locali affrontano gli stessi ostacoli online.</p>
+          </div>
           
-          <div className="relative bg-gray-100 rounded-2xl overflow-hidden aspect-video shadow-sm group">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Clock, title: "Sito web lento", desc: "I clienti abbandonano la pagina prima ancora che si carichi." },
+              { icon: Search, title: "Scarsa visibilità", desc: "Sei introvabile su Google quando le persone cercano i tuoi servizi." },
+              { icon: TrendingDown, title: "Pochi contatti", desc: "Il sito c'è, ma il telefono non squilla e non arrivano email." },
+              { icon: Users, title: "Immagine datata", desc: "Una presenza online poco curata che non trasmette il tuo vero valore." }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
+                <div className="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SEZIONE SOLUZIONE */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Per rendere tutto semplice e senza rischi...</h2>
+          <p className="text-xl text-gray-600 mb-12">
+            L'obiettivo è mostrarvi concretamente come un sito moderno può attirare clienti e semplificare il vostro lavoro.
+          </p>
+          
+          <div className="bg-blue-600 rounded-3xl p-8 sm:p-12 text-white shadow-xl transform transition-transform hover:scale-[1.02] duration-300">
+            <h3 className="text-3xl font-bold mb-6">Ti offro una BOZZA GRATUITA personalizzata</h3>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-10">
+              <div className="flex items-center justify-center bg-blue-700/50 rounded-lg py-3 px-6">
+                <CheckCircle2 className="w-6 h-6 text-blue-300 mr-3" />
+                <span className="font-medium text-lg">Nessun costo</span>
+              </div>
+              <div className="flex items-center justify-center bg-blue-700/50 rounded-lg py-3 px-6">
+                <CheckCircle2 className="w-6 h-6 text-blue-300 mr-3" />
+                <span className="font-medium text-lg">Nessun obbligo</span>
+              </div>
+            </div>
+            <a 
+              href="#contatti-rapidi" 
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-blue-900 bg-white rounded-xl hover:bg-gray-50 transition-all shadow-md w-full sm:w-auto"
+            >
+              Voglio vedere la mia bozza gratuita
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SEZIONE VALORE CONCRETO */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Cosa otterrai con il nuovo sito</h2>
+              <ul className="space-y-6">
+                {[
+                  { icon: Zap, title: "Sito più veloce e moderno", desc: "Ottimizzato per caricarsi all'istante su smartphone e PC." },
+                  { icon: Search, title: "Migliore posizionamento", desc: "Strutturato per piacere a Google e farti trovare facilmente." },
+                  { icon: Target, title: "Più contatti e richieste", desc: "Pulsanti chiari e moduli semplici per trasformare i visitatori in clienti." },
+                  { icon: Users, title: "Design pensato per convertire", desc: "Non solo bello da vedere, ma studiato per guidare l'utente all'azione." }
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mr-4">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-1">{item.title}</h4>
+                      <p className="text-gray-600">{item.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-emerald-50 rounded-3xl transform rotate-3"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+                alt="Analisi e crescita sito web" 
+                className="relative rounded-3xl shadow-lg object-cover aspect-[4/3]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. SEZIONE PORTFOLIO */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Alcuni lavori realizzati</h2>
+            <p className="text-lg text-gray-600">Esempi di come ho aiutato altre attività a presentarsi al meglio.</p>
+          </div>
+
+          <div className="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] shadow-md group max-w-5xl mx-auto">
             <AnimatePresence mode="wait">
               <motion.a
                 key={currentSlide}
@@ -88,7 +235,7 @@ export default function CreazioneSitiWeb() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4 }}
                 className="absolute inset-0 block"
               >
                 <img 
@@ -97,10 +244,15 @@ export default function CreazioneSitiWeb() {
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
-                  <div className="text-white flex items-center justify-between w-full">
-                    <h3 className="text-2xl font-bold">{portfolioItems[currentSlide].name}</h3>
-                    <ExternalLink className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
+                  <div className="text-white flex items-end justify-between w-full">
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-2">{portfolioItems[currentSlide].name}</h3>
+                      <p className="text-gray-200 text-sm sm:text-base max-w-xl">{portfolioItems[currentSlide].description}</p>
+                    </div>
+                    <div className="hidden sm:flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full group-hover:bg-blue-600 transition-colors">
+                      <ExternalLink className="w-6 h-6" />
+                    </div>
                   </div>
                 </div>
               </motion.a>
@@ -109,45 +261,120 @@ export default function CreazioneSitiWeb() {
             {/* Carousel Controls */}
             <button 
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-gray-900 shadow-md transition-colors z-10"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-gray-900 shadow-lg transition-transform hover:scale-110 z-10"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-7 h-7" />
             </button>
             <button 
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-gray-900 shadow-md transition-colors z-10"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-gray-900 shadow-lg transition-transform hover:scale-110 z-10"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-7 h-7" />
             </button>
 
             {/* Dots */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
               {portfolioItems.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${idx === currentSlide ? 'bg-white' : 'bg-white/50'}`}
+                  className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/80'}`}
                 />
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Contact Card */}
-          <div className="mt-16 bg-blue-50 border border-blue-100 rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Iniziamo il tuo progetto</h3>
-            <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-              Raccontami la tua idea. Partiremo con una demo gratuita per capire insieme la direzione migliore per il tuo nuovo sito web.
-            </p>
-            <Link 
-              to="/contatti" 
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-            >
-              Richiedi una demo gratuita
-            </Link>
+      {/* 7. SEZIONE PROVA SOCIALE */}
+      <section className="py-20 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-gray-900">Collaboro con realtà locali che vogliono crescere online</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {testimonials.map((testimonial, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                <div className="text-4xl text-blue-200 absolute top-4 left-4 font-serif">"</div>
+                <p className="text-gray-700 italic mb-6 relative z-10 pt-4">{testimonial.text}</p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold mr-3">
+                    {testimonial.author.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-900">{testimonial.author}</p>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. CTA FORTE */}
+      <section className="py-24 bg-gray-900 text-center px-4">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Vuoi vedere come potrebbe essere il tuo nuovo sito?</h2>
+          <p className="text-xl text-gray-300 mb-10">
+            Posso prepararti una demo gratuita, senza impegno. Scopri il potenziale della tua attività online.
+          </p>
+          <a 
+            href="#contatti-rapidi" 
+            className="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-gray-900 bg-white rounded-xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full sm:w-auto"
+          >
+            Contattami ora
+          </a>
+        </div>
+      </section>
+
+      {/* 9. SEZIONE CONTATTO RAPIDO */}
+      <section id="contatti-rapidi" className="py-24 bg-white scroll-mt-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Richiedi la tua demo gratuita</h2>
+            <p className="text-lg text-gray-600">Scegli il metodo che preferisci. Ti risponderò il prima possibile.</p>
           </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <a 
+              href="https://wa.me/393515584636"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl border-2 border-green-100 hover:border-green-500 hover:shadow-lg transition-all group"
+            >
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-600 group-hover:bg-green-500 group-hover:text-white transition-colors mb-4">
+                <MessageCircle className="w-8 h-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-1">WhatsApp</h3>
+              <p className="text-sm text-gray-500 text-center">Risposta rapida</p>
+            </a>
+
+            <a 
+              href="mailto:lorenzoferrara737@gmail.com"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl border-2 border-blue-100 hover:border-blue-600 hover:shadow-lg transition-all group"
+            >
+              <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors mb-4">
+                <Mail className="w-8 h-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-1">Email</h3>
+              <p className="text-sm text-gray-500 text-center">Scrivimi i dettagli</p>
+            </a>
+
+            <a 
+              href="#"
+              className="flex flex-col items-center p-8 bg-white rounded-2xl border-2 border-pink-100 hover:border-pink-500 hover:shadow-lg transition-all group"
+            >
+              <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center text-pink-600 group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-white transition-all mb-4">
+                <Instagram className="w-8 h-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-1">Instagram</h3>
+              <p className="text-sm text-gray-500 text-center">Seguimi e scrivimi</p>
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
+
