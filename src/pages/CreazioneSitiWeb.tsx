@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
-import immagineStudio from '../assets/Studio-bisio.png';
+import immagineStudio from '../assets/studio-bisio.png';
 
 const portfolioItems = [
   {
