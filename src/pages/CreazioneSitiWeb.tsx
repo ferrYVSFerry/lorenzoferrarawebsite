@@ -17,13 +17,14 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
+import immagineStudio from './Studio-bisio.png';
 
 const portfolioItems = [
   {
     id: 1,
     name: 'Studio Ibis',
     description: 'Sito web elegante e dal design raffinato per uno studio di tatuaggi. Progettato per esaltare le opere d\'arte e facilitare le prenotazioni.',
-    image: '/src/pages/Studio-bisio.png',
+    image: immagineStudio,
     link: 'https://ferryvsferry.github.io/Studio-Ibis/'
   },
   {
