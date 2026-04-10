@@ -11,7 +11,7 @@ export default function Layout() {
   useEffect(() => {
     setIsMenuOpen(false);
     setIsServicesOpen(false);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
 
   return (
