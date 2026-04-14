@@ -17,7 +17,7 @@ export default function Contact() {
           <motion.a 
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="mailto:lorenzoferrara737@gmail.com"
+            href="mailto:info@lorenzoferrara.shop"
             className="flex items-center p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
           >
             <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 group-hover:bg-blue-100 transition-colors mr-6 flex-shrink-0">
@@ -51,7 +51,9 @@ export default function Contact() {
           <motion.a 
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="#"
+            href="https://www.instagram.com/lorfershop?igsh=MXQ5ODJzeXQ5a25obA%3D%3D&utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
           >
             <div className="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-600 group-hover:bg-pink-100 transition-colors mr-6 flex-shrink-0">
@@ -59,7 +61,7 @@ export default function Contact() {
             </div>
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-1">Instagram</h3>
-              <p className="text-gray-600">Contattami su Instagram</p>
+              <p className="text-gray-600">Seguimi su @lorfershop</p>
             </div>
           </motion.a>
         </div>
